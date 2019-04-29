@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # app/controllers/tasks_controller.rb
 
 class TasksController < ApplicationController
@@ -5,14 +7,13 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def new
-  end
+  def new; end
 
   def create
-    task = Task.new({
+    task = Task.new(
       title: params[:task][:title],
       description: params[:task][:description]
-      })
+    )
     task.save
     redirect_to '/tasks'
   end
@@ -27,10 +28,10 @@ class TasksController < ApplicationController
 
   def update
     task = Task.find(params[:id])
-    task.update({
+    task.update(
       title: params[:task][:title],
       description: params[:task][:description]
-      })
+    )
     task.save
     redirect_to "/tasks/#{task.id}"
   end
